@@ -85,14 +85,6 @@ export function bindInput(refs, boxShadow) {
 }
 ```
 
-## 🎯 Melhorias Futuras
-
-- [] Exportar configurações como snippet CSS personalizado;
-- [] Histórico de sombras geradas;
-- [] Suporte a múltiplas sombras (camadas);
-- [] Temas escuro/claro automáticos;
-- [] Compartilhamento direto do preview.
-
 ## 📸 Preview
 
 ![Preview do Projeto](./src/img/preview.jpg)
