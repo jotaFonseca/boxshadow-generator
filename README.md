@@ -56,12 +56,12 @@ box-shadow-generator/
 ├── [index.html]
 ├── [README.md]
 └── src/
-├── css/
-│ └── [style.css]
-└── js/
-├── [script.js]
-├── [boxShadowGenerator.js]
-└── [domUtils.js]
+  ├── css/
+  │ └── [style.css]
+  └── js/
+    ├── [script.js]
+    ├── [boxShadowGenerator.js]
+    └── [domUtils.js]
 ```
 
 - **index.html:** Estrutura principal da aplicação;
