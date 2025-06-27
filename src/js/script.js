@@ -10,6 +10,14 @@ const blurRef = document.querySelector("#blur-value");
 const spread = document.querySelector("#spread");
 const spreadRef = document.querySelector("#spread-value");
 
+const color = document.querySelector("#color");
+const colorRef = document.querySelector("#color-value");
+
+const opacity = document.querySelector("#opacity");
+const opacityRef = document.querySelector("#opacity-value");
+
+const inset = document.querySelector("#inset");
+
 const previewBox = document.querySelector("#box");
 
 const rule = document.querySelector("#rule span");
@@ -26,36 +34,60 @@ const boxShadow = new BoxShadowGenerator(
   blurRef,
   spread,
   spreadRef,
+  color,
+  colorRef,
+  opacity,
+  opacityRef,
+  inset,
   previewBox,
   rule,
   webkitRule,
   mozRule
 );
 
+console.log(boxShadow);
+
 boxShadow.initialize();
 
 // Events
-horizontal.addEventListener('input', (e) => {
+horizontal.addEventListener("input", (e) => {
   const value = e.target.value;
 
-  boxShadow.updateValue('horizontal', value);
-})
+  boxShadow.updateValue("horizontal", value);
+});
 
-vertical.addEventListener('input', (e) => {
+vertical.addEventListener("input", (e) => {
   const value = e.target.value;
 
-  boxShadow.updateValue('vertical', value);
-})
+  boxShadow.updateValue("vertical", value);
+});
 
-blur.addEventListener('input', (e) => {
+blur.addEventListener("input", (e) => {
   const value = e.target.value;
 
-  boxShadow.updateValue('blur', value);
-})
+  boxShadow.updateValue("blur", value);
+});
 
-spread.addEventListener('input', (e) => {
+spread.addEventListener("input", (e) => {
   const value = e.target.value;
 
-  boxShadow.updateValue('spread', value);
-})
+  boxShadow.updateValue("spread", value);
+});
 
+color.addEventListener("input", (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue("color", value);
+});
+
+opacity.addEventListener("input", (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue("opacity", value);
+});
+
+inset.addEventListener("input", (e) => {
+  const value = e.target.checked;
+
+  boxShadow.updateValue("inset", value);
+});
