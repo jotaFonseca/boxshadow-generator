@@ -32,4 +32,6 @@ const boxShadow = new BoxShadowGenerator(
   mozRule
 );
 
+boxShadow.initialize();
+
 console.log(boxShadow);
