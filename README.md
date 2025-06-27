@@ -76,12 +76,12 @@ box-shadow-generator/
 // Exemplo: Atualização dinâmica dos valores e preview
 
 export function bindInput(refs, boxShadow) {
-refs.forEach(({ input, type }) => {
-input.addEventListener("input", () => {
-const value = input.type === "checkbox" ? input.checked : input.value;
-boxShadow.updateValue(type, value);
-});
-});
+  refs.forEach(({ input, type }) => {
+    input.addEventListener("input", () => {
+      const value = input.type === "checkbox" ? input.checked : input.value;
+      boxShadow.updateValue(type, value);
+    });
+  });
 }
 ```
 
