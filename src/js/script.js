@@ -1,106 +1,42 @@
 import { BoxShadowGenerator } from "./boxShadowGenerator.js";
+import { $, bindInput } from "./domUtils.js";
 
-// Elements Selection
-const horizontal = document.querySelector("#horizontal");
-const horizontalRef = document.querySelector("#horizontal-value");
-const vertical = document.querySelector("#vertical");
-const verticalRef = document.querySelector("#vertical-value");
-const blur = document.querySelector("#blur");
-const blurRef = document.querySelector("#blur-value");
-const spread = document.querySelector("#spread");
-const spreadRef = document.querySelector("#spread-value");
+const refs = {
+  horizontal: {
+    input: $("#horizontal"),
+    ref: $("#horizontal-value"),
+    type: "horizontal",
+  },
+  vertical: {
+    input: $("#vertical"),
+    ref: $("#vertical-value"),
+    type: "vertical",
+  },
+  blur: { input: $("#blur"), ref: $("#blur-value"), type: "blur" },
+  spread: { input: $("#spread"), ref: $("#spread-value"), type: "spread" },
+  color: { input: $("#color"), ref: $("#color-value"), type: "color" },
+  opacity: { input: $("#opacity"), ref: $("#opacity-value"), type: "opacity" },
+  inset: { input: $("#inset"), ref: null, type: "inset" },
+};
 
-const color = document.querySelector("#color");
-const colorRef = document.querySelector("#color-value");
+const previewBox = $("#box");
+const rules = [$("#rule span"), $("#webkit-rule span"), $("#moz-rule span")];
+const rulesArea = $("#rules-area");
+const copyInstructions = $("#copy-instructions");
 
-const opacity = document.querySelector("#opacity");
-const opacityRef = document.querySelector("#opacity-value");
-
-const inset = document.querySelector("#inset");
-
-const previewBox = document.querySelector("#box");
-
-const rule = document.querySelector("#rule span");
-const webkitRule = document.querySelector("#webkit-rule span");
-const mozRule = document.querySelector("#moz-rule span");
-
-const rulesArea = document.querySelector("#rules-area");
-const copyInstructions = document.querySelector("#copy-instructions");
-
-// Initialization
-const boxShadow = new BoxShadowGenerator(
-  horizontal,
-  horizontalRef,
-  vertical,
-  verticalRef,
-  blur,
-  blurRef,
-  spread,
-  spreadRef,
-  color,
-  colorRef,
-  opacity,
-  opacityRef,
-  inset,
-  previewBox,
-  rule,
-  webkitRule,
-  mozRule
-);
-
+const boxShadow = new BoxShadowGenerator(refs, previewBox, rules);
 boxShadow.initialize();
 
-// Events
-horizontal.addEventListener("input", (e) => {
-  const value = e.target.value;
+bindInput(Object.values(refs), boxShadow);
 
-  boxShadow.updateValue("horizontal", value);
+rulesArea.addEventListener("click", () => {
+  navigator.clipboard
+    .writeText(rulesArea.innerText.replace(/^\s*\n/gm, ""))
+    .then(() => {
+      copyInstructions.innerText = "Regra copiada com sucesso!";
+      setTimeout(() => {
+        copyInstructions.innerText =
+          "Clique no quadro acima para copiar as regras!";
+      }, 3000);
+    });
 });
-
-vertical.addEventListener("input", (e) => {
-  const value = e.target.value;
-
-  boxShadow.updateValue("vertical", value);
-});
-
-blur.addEventListener("input", (e) => {
-  const value = e.target.value;
-
-  boxShadow.updateValue("blur", value);
-});
-
-spread.addEventListener("input", (e) => {
-  const value = e.target.value;
-
-  boxShadow.updateValue("spread", value);
-});
-
-color.addEventListener("input", (e) => {
-  const value = e.target.value;
-
-  boxShadow.updateValue("color", value);
-});
-
-opacity.addEventListener("input", (e) => {
-  const value = e.target.value;
-
-  boxShadow.updateValue("opacity", value);
-});
-
-inset.addEventListener("input", (e) => {
-  const value = e.target.checked;
-
-  boxShadow.updateValue("inset", value);
-});
-
-rulesArea.addEventListener('click', () => {
-  const rules = rulesArea.innerText.replace(/^\s*\n/gm, '');
-
-  navigator.clipboard.writeText(rules).then(() => {
-    copyInstructions.innerText = "Regra copiada com sucesso!";
-
-    setTimeout(() => {
-      copyInstructions.innerText = 'Clique no quadro acima para copiar as regras!'
-    }, 3000);
-  })
-})
