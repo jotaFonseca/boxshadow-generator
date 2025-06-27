@@ -24,6 +24,9 @@ const rule = document.querySelector("#rule span");
 const webkitRule = document.querySelector("#webkit-rule span");
 const mozRule = document.querySelector("#moz-rule span");
 
+const rulesArea = document.querySelector("#rules-area");
+const copyInstructions = document.querySelector("#copy-instructions");
+
 // Initialization
 const boxShadow = new BoxShadowGenerator(
   horizontal,
@@ -44,8 +47,6 @@ const boxShadow = new BoxShadowGenerator(
   webkitRule,
   mozRule
 );
-
-console.log(boxShadow);
 
 boxShadow.initialize();
 
@@ -91,3 +92,15 @@ inset.addEventListener("input", (e) => {
 
   boxShadow.updateValue("inset", value);
 });
+
+rulesArea.addEventListener('click', () => {
+  const rules = rulesArea.innerText.replace(/^\s*\n/gm, '');
+
+  navigator.clipboard.writeText(rules).then(() => {
+    copyInstructions.innerText = "Regra copiada com sucesso!";
+
+    setTimeout(() => {
+      copyInstructions.innerText = 'Clique no quadro acima para copiar as regras!'
+    }, 3000);
+  })
+})
