@@ -34,4 +34,28 @@ const boxShadow = new BoxShadowGenerator(
 
 boxShadow.initialize();
 
-console.log(boxShadow);
+// Events
+horizontal.addEventListener('input', (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue('horizontal', value);
+})
+
+vertical.addEventListener('input', (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue('vertical', value);
+})
+
+blur.addEventListener('input', (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue('blur', value);
+})
+
+spread.addEventListener('input', (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue('spread', value);
+})
+

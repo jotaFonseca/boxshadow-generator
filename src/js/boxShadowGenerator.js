@@ -48,4 +48,27 @@ export class BoxShadowGenerator {
     this.webkitRule.innerText = this.currentRule;
     this.mozRule.innerText = this.currentRule;
   }
+
+  updateValue(type, value) {
+    switch (type) {
+      case "horizontal":
+        this.horizontalRef.value = value;
+        break;
+      case "vertical":
+        this.verticalRef.value = value;
+        break;
+      case "blur":
+        this.blurRef.value = value;
+        break;
+      case 'spread':
+        this.spreadRef.value = value;
+        break;
+      default:
+        console.error("Invalid type provided for updateValue");
+        return;
+    }
+
+    this.applyRule();
+    this.showRule();
+  }
 }
